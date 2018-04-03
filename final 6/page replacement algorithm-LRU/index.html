@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon" href="logo1.ico" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>pagereplacement</title>
+
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+	<script src="sketch.js"></script>
+
+	
+</head>
+<body>
+
+	<div id="sketch-holder" ,class="container">
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-1"><p>
+        
+        </p>
+        </div>
+        <div class="col-10 "><br>
+        <h3 align="center">Least Recently Used(LRU) page replacement algorithm</h3>
+        
+		<!-- theory-->
+		<li><strong>Least Recently Used &#8211;</strong><br />
+In this algorithm page will be replaced which is least recently used.</p>
+<p>Let say the page reference string 7 0 1 2 0 3 0 4 2 3 0 3 2 . Initially we have 4 page slots empty.<br />
+Initially all slots are empty, so when 7 0 1 2 are allocated to the empty slots &#8212;><strong> 4 Page faults</strong><br />
+0 is already their so &#8212;> <strong>0 Page fault.</strong><br />
+when 3 came it will take the place of 7 because it is least recently used &#8212;><strong>1 Page fault</strong><br />
+0 is already in memory so &#8212;><strong> 0 Page fault</strong>.<br />
+4 will takes place of 1 &#8212;><strong> 1 Page Fault</strong><br />
+Now for the further page reference string &#8212;><strong> 0 Page fault</strong> because they are already available in the memory.</p>
+<p>Example-2, Let’s have a reference string: a, b, c, d, c, a, d, b, e, b, a, b, c, d and the size of the frame be 4.<br />
+<img src="Page_Replacement_Algorithms_3.png" alt="lru" width="596" height="187" class="aligncenter size-full wp-image-165727" /><br />
+There are 7 page faults using LRU algorithm.
+</li>
+		
+        </div>
+        <div class="col-1">
+        
+        </div>
+      </div>
+      <hr>
+    </div>
+	
+</body>
+</html>

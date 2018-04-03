@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon" href="logo1.ico" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>file distribution system</title>
+
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+	<script src="sketch.js"></script>
+
+	
+</head>
+<body>
+	<div id="sketch-holder" ,class="container">
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-1"><p>
+        
+        </p>
+        </div>
+        <div class="col-10 "><br>
+        <h3 align="center">FILE DISTRIBUTION SYSTEM</h3>
+        
+		<!-- theory-->
+		<!--<p><b>Apache Hadoop</b>  is a collection of open-source software utilities that facilitate using a network of many computers to solve problems involving massive amounts of data and computation. It provides a software framework for distributed storage and processing of big data using the MapReduceprogramming model. Originally designed for computer clusters built from commodity hardware—still the common use—it has also found use on clusters of higher-end hardware. All the modules in Hadoop are designed with a fundamental assumption that hardware failures are common occurrences and should be automatically handled by the framework.</p>
+		-->
+		<p>
+			In Hadoop distribution system, this work on two node 
+		</p>
+		<p>
+			1)Name Node 
+		</p>
+		<p>
+			2)Data Node
+		</p>
+		<p>
+			<b>1)Name Node:-</b>
+				name node work is divide file into 64 mb or multiple of 64mb block
+		</p>
+		<p>
+			than it transfer each block into different server such that same node are not repeated on same server.
+			and get back to address of the data node where each block is available.
+		</p>
+		
+		<p>
+			<b>2)Data Node:-</b>
+				data node work for store the data.
+		</p>
+		
+		<p>
+			if any process come for do operation on file than name node divide process code and send code to data node.
+		</p>
+		
+		<p>
+			than data node do process individually and after completing the process combine all output into one and send back to the name node.
+		</p>
+		
+        <!--<p align="right">Theory source : <a href="https://en.wikipedia.org/wiki/Apache_Hadoop">https://en.wikipedia.org/wiki/Apache_Hadoop</a></p>
+        -->
+		</div>
+        <div class="col-1">
+        
+        </div>
+      </div>
+      <hr>
+    </div>
+</body>
+</html>

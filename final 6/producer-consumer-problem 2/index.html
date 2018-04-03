@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon" href="logo1.ico" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>producer-consumer-problem</title>
+
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+	<script src="sketch.js"></script>
+
+	
+</head>
+<body>
+	<div id="sketch-holder" ,class="container">
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-1"><p>
+        
+        </p>
+        </div>
+        <div class="col-10 "><br>
+        <h3 align="center">PRODUCER CONSUMER PROBLEM</h3>
+        
+		<!-- theory-->
+<p>producer consumer problem, which is also called <b>producer consumer problem</b>, is one of the classic problems of synchronization. Let's start by understanding the problem here, before moving on to the solution and program code.</p>
+<hr />
+<h2>What is the Problem Statement?</h2>
+<p>There is a buffer of <code>n</code> slots and each slot is capable of storing one unit of data. There are two processes running, namely, <b>producer</b> and <b>consumer</b>, which are operating on the buffer.</p>
+<p class="center"><img src="bounded-buffer-problem.png" alt="Bounded Buffer Problem" /></p>
+<p class="center"><b>Producer consumer problem</b></p>
+<br>
+<p>A producer tries to insert data into an empty slot of the buffer. A consumer tries to remove data from a filled slot in the buffer. As you might have guessed by now, those two processes won't produce the expected output if they are being executed concurrently. </p>
+<p>There needs to be a way to make the producer and consumer work in an independent manner.</p>
+<hr />
+<h2>Here's a Solution</h2>
+<p>One solution of this problem is to use semaphores. The semaphores which will be used here are:</p>
+<ul class="content">
+<li><code>m</code>, a <b>binary semaphore</b> which is used to acquire and release the lock.</li>
+<li><code>empty</code>, a <b>counting semaphore</b> whose initial value is the number of slots in the buffer, since, initially all slots are empty.</li>
+<li><code>full</code>, a <b>counting semaphore</b> whose initial value is <code>0</code>.</li>
+</ul>
+<p>At any instant, the current value of empty represents the number of empty slots in the buffer and full represents the number of occupied slots in the buffer. </p>
+<div><p class="center hide-on-large">
+</p></div>
+<hr />
+<h2>The Producer Operation</h2>
+<p>The pseudocode of the producer function looks like this:</p>
+<pre class="c"><code class="language-clike">do 
+{
+    // wait until empty > 0 and then decrement 'empty'
+    wait(empty);   
+    // acquire lock
+    wait(mutex);  
+    
+    /* perform the insert operation in a slot */
+    
+    // release lock
+    signal(mutex);  
+    // increment 'full'
+    signal(full);   
+} 
+while(TRUE)</code></pre>
+<ul class="content">
+<li>Looking at the above code for a producer, we can see that a producer first waits until there is atleast one empty slot. </li>
+<li>Then it decrements the <b>empty</b> semaphore because, there will now be one less empty slot, since the producer is going to insert data in one of those slots. </li>
+<li>Then, it acquires lock on the buffer, so that the consumer cannot access the buffer until producer completes its operation.</li>
+<li>After performing the insert operation, the lock is released and the value of <b>full</b> is incremented because the producer has just filled a slot in the buffer.</li>
+</ul>
+<hr />
+<h2>The Consumer Operation</h2>
+<p>The pseudocode for the consumer function looks like this:</p>
+<pre class="c"><code class="language-clike">do 
+{
+    // wait until full > 0 and then decrement 'full'
+    wait(full);
+    // acquire the lock
+    wait(mutex);  
+    
+    /* perform the remove operation in a slot */ 
+    
+    // release the lock
+    signal(mutex); 
+    // increment 'empty'
+    signal(empty); 
+} 
+while(TRUE);</code></pre>
+<ul class="content">
+<li>The consumer waits until there is atleast one full slot in the buffer. </li>
+<li>Then it decrements the <b>full</b> semaphore because the number of occupied slots will be decreased by one, after the consumer completes its operation.</li>
+<li>After that, the consumer acquires lock on the buffer.</li>
+<li>Following that, the consumer completes the removal operation so that the data from one of the full slots is removed.</li>
+<li>Then, the consumer releases the lock.</li>
+<li>Finally, the <b>empty</b> semaphore is incremented by 1, because the consumer has just removed data from an occupied slot, thus making it empty.</li>
+</ul>
+		
+        <p align="right">Theory source : <a href="https://www.studytonight.com/">https://www.studytonight.com/</a></p>
+        </div>
+        <div class="col-1">
+        
+        </div>
+      </div>
+      <hr>
+    </div>
+
+</body>
+</html>
